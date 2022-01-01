@@ -1,0 +1,1 @@
+docker run -p 9000:9000  -e MINIO_ROOT_USER=postgres MINIO_ROOT_PASSWORD=changeme - --name minio1  minio/minio server /data
