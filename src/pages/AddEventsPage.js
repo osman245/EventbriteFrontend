@@ -18,7 +18,7 @@ export const AddEventsPage = () => {
   const[localImage,setLocalImage] = useState('');
   const axios = require('axios');
   var cors = require('cors');
-
+  const data = {imageUrl,name,date,pricePerTicket,eventDesc};
 
 
   
@@ -27,7 +27,7 @@ export const AddEventsPage = () => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {imageUrl,name,date,pricePerTicket,eventDesc};
+   
 fetch('http://localhost:8082/api/v1/event/',{
   method:'POST',
   headers: {"Content-Type": "application/json" },
@@ -35,12 +35,15 @@ fetch('http://localhost:8082/api/v1/event/',{
 }).then(() => {
   console.log('new data') })
 
- setLocalImage(''); setDate('');setPricePerTicket('');
+  setLocalImage(''); setDate('');setPricePerTicket('');
   setEventDesc('');setName('');
 
 
 }
   
+
+
+
 const imageSubmit = (e) => {
 e.preventDefault();
 var formData = new FormData();
@@ -55,6 +58,10 @@ axios.put('http://localhost:8082/api/file/', formData, {
 
     }
 }).then(response => setImageUrl(response.data.publicUrl));
+
+setTimeout(handleSubmit(e),2000);
+
+
 }
 
 
@@ -103,7 +110,6 @@ console.log(imageUrl);
       <div className="form-group" id="imageForm">
         <label className="mt-3 mr-3" htmlFor="imageSrc ">Upload Image:</label>
          <input id="file" type="file"   value={localImage} onChange = {(e) => {console.log(e.target.value); setLocalImage((e.target.value)) } }  accept="image/*" />
-         <input  type="submit" className="btn btn-primary btn-md"  onClick={imageSubmit}  id="submitImage"/>
         </div>
         
            
@@ -133,7 +139,7 @@ console.log(imageUrl);
         <div className="invalid-feedback">
                   description of Event is required
                 </div>
-      <button onClick={handleSubmit} id="myButton" type="submit" className="btn btn-primary btn-md"  >Register Event</button>
+      <button onClick={imageSubmit} id="myButton" type="submit" className="btn btn-primary btn-md"  >Register Event</button>
       </form>
 
     </div>
@@ -144,6 +150,3 @@ console.log(imageUrl);
 
 );
     }
-
-
-    
