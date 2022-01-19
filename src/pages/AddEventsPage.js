@@ -18,7 +18,7 @@ export const AddEventsPage = () => {
   const[localImage,setLocalImage] = useState('');
   const axios = require('axios');
   var cors = require('cors');
-  const data = {imageUrl,name,date,pricePerTicket,eventDesc};
+  const data = {localImage,name,date,pricePerTicket,eventDesc};
 
 
   
