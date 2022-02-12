@@ -18,7 +18,7 @@ export const AddEventsPage = () => {
   const imageSubmit = (e) => {
     e.preventDefault();
 
-    setTimeout(handleSubmit(e),3000);
+
     var formData = new FormData();
     var imageFile = document.querySelector("#file");
     formData.append("file", imageFile.files[0]);
@@ -33,7 +33,7 @@ export const AddEventsPage = () => {
     //setImageUrl(response.data.publicUrl);
 
     console.log("imageUrl:" + imageUrl);
-
+    setTimeout(handleSubmit(e),8000);
   };
 
 
