@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
 
-  sample:
+  ui:
     container_name: eventbrite-frontend
     build:
       context: .
