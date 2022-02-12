@@ -33,17 +33,17 @@ export const AddEventsPage = () => {
     //setImageUrl(response.data.publicUrl);
 
     console.log("imageUrl:" + imageUrl);
-    setTimeout(handleSubmit(e),8000);
+    setTimeout(handleSubmit(e),1000);
   };
 
 
  const handleSubmit = (e) => {
+   e.preventDefault();
 
-
-    fetch("http://localhost:8082/api/v1/event/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+    axios({
+        method: 'post',
+        url:'http://localhost:8082/api/v1/event/',
+      data: data
     }).then(() => {
       console.log("new data");
     });
