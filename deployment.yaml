@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: eb-frontend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eb-frontend
+  template:
+    metadata:
+      labels:
+        app: eb-frontend
+    spec:
+      containers:
+      -  name: eb-frontend
+         image: warsame99/eb-frontend
+         imagePullPolicy: Always
+         ports:
+         - containerPort: 80
+         
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: eb-frontend
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      procotol: TCP
+      nodePort: 31000
+   selector:
+       app: eb-frontend
